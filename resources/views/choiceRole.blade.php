@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include('inc.head')
+    {{-- <link rel="stylesheet" href="{{ asset('/css/') }}"> --}}
+</head>
+<body>
+    @php
+    
+        $btnClass=array( "class='btn btn-primary btn-lg'",
+            "class='btn btn-secondary btn-lg'",
+            "class='btn btn-success btn-lg'",
+            "class='btn btn-warning btn-lg'");
+                    
+            $i=3;
+
+            echo"
+            <div class='login-page-wrap'>     
+                <center>
+                    <div style='background-color:rgba(135, 165, 200, 0.609); border-style:inset; border-radius:30px 2px 30px 2px; width:50%; margin-top:10%; '>
+                        <br>
+                        <h2> Log in As : </h2>
+                        <div class='ui-btn-wrap'>
+                            <ul>";
+
+                                foreach($arr as $subArr)
+                                {
+                                    $roleID=$subArr[0];
+                                    $roleName = $subArr[1];
+                                    echo "<li><button type='button' onclick=displayChosenHospitalInterface($roleID); $btnClass[$i] >$roleName</button></li>";
+                                    $i--;
+                                    if($i==0){$i=3;}
+                                }
+                                echo" 
+                            </ul>
+                        </div>
+                    </div>
+                </center>
+            </div>";
+    @endphp
+
+    {{-- @include('inc.jsfiles') --}}
+    <script>
+       
+        function displayChosenHospitalInterface(chosenRoleID)
+        {    
+            window.location.href="login/r/"+chosenRoleID;
+        }
+        
+     </script>
+</body>
+</html>
